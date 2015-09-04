@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Chemotaxis by Stacy Gee</title>
+	<h1>Chemotaxis</h1>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.16/processing.js"></script>
+</head>
+<body>
+	<!-- Processing code -->
+	<script type="application/processing" target="mysketch">
+	//Stacy Gee, CP1 6-7, Bouncing Ball
+	Bacteria[] smallThing = new Bacteria[10];
+	public void setup(){
+	  size(400, 400);
+	  background(0);
+	  frameRate(400);
+	  for (int many = 0; many < smallThing.length; many++){
+	    smallThing[many] = new Bacteria();
+	  }
+	}
+	public void draw(){
+	  for (int appear = 0; appear < 10; appear++){
+	    smallThing[appear].show();
+	    smallThing[appear].move();
+	  }
+	}
+	class Bacteria{
+	  int x, y, r, g, b;
+	  int filling, outline;
+	  Bacteria(){
+	    x = 200;
+	    y = 200;
+	    r = random(255);
+	    g = random(255);
+	    b = random(255);
+	    filling = color(r, g, b);
+	    outline = color(255-r, 255-g, 255-b);
+	  }
+	  public void show(){
+	    stroke(outline);
+	    fill(filling);
+	    ellipse(x, y, 10, 10);
+	    if (x < 0){
+	      x = 0;
+	    }
+	    if (x > 400){
+	      x = 400;
+	    }
+	    if (y < 0){
+	      y = 0;
+	    }
+	    if (y > 400){
+	      y = 400;
+	    }
+	  }
+	  public void move(){
+	    x+=Math.random()*5-2;
+	    y+=Math.random()*5-2;
+	  }
+	}
+	</script>
+	<canvas id="mysketch"></canvas>
+</body>
+</html>
